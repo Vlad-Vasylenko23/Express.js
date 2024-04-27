@@ -1,0 +1,35 @@
+<!-- views/cart.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Корзина</h1>
+    </header>
+    <main>
+        <% if (shoppingCart.length > 0) { %>
+            <ul>
+                <% shoppingCart.forEach((item, index) => { %>
+                    <li class="cart-item">
+                        <%= item %>
+                        <form action="/remove-from-cart" method="post" style="display: inline;">
+                            <input type="hidden" name="index" value="<%= index %>">
+                            <button type="submit">Видалити</button>
+                        </form>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>Корзина порожня.</p>
+        <% } %>
+        <a href="/" class="button">Повернутися на головну</a>
+    </main>
+    <%- include('footer.ejs') %>
+</body>
+</html>

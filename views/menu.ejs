@@ -1,0 +1,36 @@
+<!-- views/menu.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Меню</h1>
+    </header>
+    <main>
+        <p>Виберіть страву з нашого меню:</p>
+        <% menu.forEach(item => { %>
+            <div class="menu-item">
+                <img src="/images/<%= item.image %>" alt="<%= item.name %>">
+                <h3><%= item.name %> - $
+                    <%= item.price %></h3>
+                <form action="/add-to-cart" method="post">
+                    <input type="hidden" name="item" value="<%= item.name %>">
+                    <button type="submit">Додати до корзини</button>
+                </form>
+            </div>
+        <% }); %>
+        <div class="return-home">
+            <a href="/" class="button">Повернутися на головну</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Доставка їжі</p>
+    </footer>
+</body>
+</html>
